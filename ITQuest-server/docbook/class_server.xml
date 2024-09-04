@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_server" xml:lang="en-US">
+<title>Server Class Reference</title>
+<indexterm><primary>Server</primary></indexterm>
+<para>
+<computeroutput>#include &lt;server.h&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for Server:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_server.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Slots    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_class_server_1a4163ad356e6f6da85e73f9377e54eaf6">startServer</link> (int host, QString hostName, QString databaseName, QString username, QString password)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_server_1aa229a1587514197693274aa0d589344b">incomingConnection</link> (qintptr socketDescriptor) override</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_server_1a02ab10c0f82b86e87072c5c8e8ab1d21">sockReady</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_server_1afe10dec3bb8eecd27cbbf05fb3959e3d">sockDisc</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_server_1ad5ec9462b520e59f7ea831e157ee5e59">Server</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_server_1a4b3aa2579cb1c8cd1d069582c14d0fa6">~Server</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_server_1a163ea8d7c12713d94dcdf7ac68813992">sendToClient</link> (QString message)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_server_1a0b5ead6c6d6143d16ec9095fce9e4810">sendToClientOther</link> (QByteArray data, <link linkend="_server_8h_1ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</link> dataType)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>QTcpSocket * <link linkend="_class_server_1ac7f958096890d0442b711a38000a02f7">socket</link></para>
+</listitem>
+            <listitem><para>QByteArray <link linkend="_class_server_1ae6e8e280151dd8ca9a269a61c51ad099">Data</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_server_1ad5ec9462b520e59f7ea831e157ee5e59"/><section>
+    <title>Server()</title>
+<indexterm><primary>Server</primary><secondary>Server</secondary></indexterm>
+<indexterm><primary>Server</primary><secondary>Server</secondary></indexterm>
+<para><computeroutput>Server::Server ( )<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_class_server_1a4b3aa2579cb1c8cd1d069582c14d0fa6"/><section>
+    <title>~Server()</title>
+<indexterm><primary>~Server</primary><secondary>Server</secondary></indexterm>
+<indexterm><primary>Server</primary><secondary>~Server</secondary></indexterm>
+<para><computeroutput>Server::~Server ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_server_1aa229a1587514197693274aa0d589344b"/><section>
+    <title>incomingConnection</title>
+<indexterm><primary>incomingConnection</primary><secondary>Server</secondary></indexterm>
+<indexterm><primary>Server</primary><secondary>incomingConnection</secondary></indexterm>
+<para><computeroutput>void Server::incomingConnection (qintptr socketDescriptor)<computeroutput>[override]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>
+<para>Handles incoming client connections.</para>
+
+<para>This method is automatically called by Qt when a new client connects to the server. It creates a new QTcpSocket for the incoming connection using the provided socket descriptor. Signals for data readiness (<computeroutput>readyRead</computeroutput>) and disconnection (<computeroutput>disconnected</computeroutput>) are connected to respective slots (<computeroutput>sockReady</computeroutput> and <computeroutput>sockDisc</computeroutput>) in the <link linkend="_class_server">Server</link> class. Additionally, a debug message indicating the client&apos;s connection via the socket descriptor is outputted.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>socketDescriptor</entry><entry>
+<para>The socket descriptor associated with the incoming connection.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                Example usage: Typically, this method is not directly called by user code, but is automatically invoked when a client connects to the server.</para>
+
+<para><formalpara><title>See also</title>
+
+<para><link linkend="_class_server_1a02ab10c0f82b86e87072c5c8e8ab1d21">Server::sockReady</link> </para>
+
+<para><link linkend="_class_server_1afe10dec3bb8eecd27cbbf05fb3959e3d">Server::sockDisc</link></para>
+</formalpara>
+</para>
+</section>
+<anchor xml:id="_class_server_1a163ea8d7c12713d94dcdf7ac68813992"/><section>
+    <title>sendToClient()</title>
+<indexterm><primary>sendToClient</primary><secondary>Server</secondary></indexterm>
+<indexterm><primary>Server</primary><secondary>sendToClient</secondary></indexterm>
+<para><computeroutput>void Server::sendToClient (QString message)</computeroutput></para>
+<para>Sends a JSON message to the connected client.</para>
+
+<para>This method prepares and sends a JSON message to the client connected to the server via TCP socket. The message is converted to a QByteArray using UTF-8 encoding. The size of the message and its data type (JSONData) are sent before the actual message content.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>message</entry><entry>
+<para>The JSON message to send to the client.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                Example usage: <literallayout><computeroutput>QString&#32;response&#32;=&#32;<emphasis role="stringliteral">&quot;{\&quot;signal\&quot;:\&quot;registrTeacherID\&quot;,\&quot;id\&quot;:123}&quot;</emphasis>;
+server.sendToClient(response);
+</computeroutput></literallayout></para>
+
+<para><formalpara><title>See also</title>
+
+<para><link linkend="_class_server_1a02ab10c0f82b86e87072c5c8e8ab1d21">Server::sockReady</link></para>
+</formalpara>
+<note><title>Note</title>
+
+<para>This method assumes that a client is currently connected and the socket (<computeroutput>socket</computeroutput>) is valid. Ensure proper error handling and socket management to prevent crashes or undefined behavior.</para>
+</note>
+</para>
+</section>
+<anchor xml:id="_class_server_1a0b5ead6c6d6143d16ec9095fce9e4810"/><section>
+    <title>sendToClientOther()</title>
+<indexterm><primary>sendToClientOther</primary><secondary>Server</secondary></indexterm>
+<indexterm><primary>Server</primary><secondary>sendToClientOther</secondary></indexterm>
+<para><computeroutput>void Server::sendToClientOther (QByteArray data, <link linkend="_server_8h_1ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</link> dataType)</computeroutput></para>
+<para>Sends data of a specified type to the connected client.</para>
+
+<para>This method prepares and sends data of a specified type to the client connected to the server via TCP socket. The data includes the type (e.g., JSONData, OtherData), the size of the data, and the data itself.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>data</entry><entry>
+<para>The QByteArray containing the data to send to the client. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>dataType</entry><entry>
+<para>The type of data being sent (e.g., JSONData, OtherData).</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                Example usage: <literallayout><computeroutput>QByteArray&#32;imageData&#32;=&#32;<emphasis role="comment">//&#32;Load&#32;image&#32;data&#32;into&#32;a&#32;QByteArray</emphasis>
+server.sendToClientOther(imageData,&#32;ImageData);
+</computeroutput></literallayout></para>
+
+<para><formalpara><title>See also</title>
+
+<para><link linkend="_class_server_1a02ab10c0f82b86e87072c5c8e8ab1d21">Server::sockReady</link></para>
+</formalpara>
+<note><title>Note</title>
+
+<para>This method assumes that a client is currently connected and the socket (<computeroutput>socket</computeroutput>) is valid. Ensure proper error handling and socket management to prevent crashes or undefined behavior.</para>
+</note>
+</para>
+</section>
+<anchor xml:id="_class_server_1afe10dec3bb8eecd27cbbf05fb3959e3d"/><section>
+    <title>sockDisc</title>
+<indexterm><primary>sockDisc</primary><secondary>Server</secondary></indexterm>
+<indexterm><primary>Server</primary><secondary>sockDisc</secondary></indexterm>
+<para><computeroutput>void Server::sockDisc ( )<computeroutput>[slot]</computeroutput></computeroutput></para>
+<para>Handles disconnection of the client socket.</para>
+
+<para>This method is connected to the <computeroutput>disconnected</computeroutput> signal of a QTcpSocket instance. It prints a debug message indicating that the client has disconnected. The method then schedules the socket object for deletion using <computeroutput>deleteLater()</computeroutput>.</para>
+
+<para>Example usage: Typically, this method is automatically invoked when a client disconnects from the server. It ensures proper cleanup of resources associated with the client socket.</para>
+
+<para><formalpara><title>See also</title>
+
+<para><link linkend="_class_server_1a02ab10c0f82b86e87072c5c8e8ab1d21">Server::sockReady</link></para>
+</formalpara>
+<note><title>Note</title>
+
+<para>This method assumes that the socket (<computeroutput>socket</computeroutput>) is valid and connected. Ensure proper error handling and socket management to prevent crashes or undefined behavior.</para>
+</note>
+</para>
+</section>
+<anchor xml:id="_class_server_1a02ab10c0f82b86e87072c5c8e8ab1d21"/><section>
+    <title>sockReady</title>
+<indexterm><primary>sockReady</primary><secondary>Server</secondary></indexterm>
+<indexterm><primary>Server</primary><secondary>sockReady</secondary></indexterm>
+<para><computeroutput>void Server::sockReady ( )<computeroutput>[slot]</computeroutput></computeroutput></para>
+<para>Handles incoming data from the client socket.</para>
+
+<para>This method is connected to the <computeroutput>readyRead</computeroutput> signal of a QTcpSocket instance. It reads the incoming data from the socket and processes it based on the specified data type. If the data type is JSONData, it parses the JSON data received from the client, performs various operations based on the received signals, and sends responses back to the client. Supported signals include registering and logging in teachers and pupils, managing classes and levels, retrieving questions, and handling various queries related to pupils. If the data type is PupilsData, it indicates a different type of data handling. After processing the data, if there are remaining bytes available in the socket, the method emits the <computeroutput>readyRead</computeroutput> signal to continue reading.</para>
+
+<para><formalpara><title>See also</title>
+
+<para><link linkend="_class_server_1a163ea8d7c12713d94dcdf7ac68813992">sendToClient</link> </para>
+
+<para>sendQuestionToClient </para>
+
+<para>sendClasses </para>
+
+<para>sendPupils </para>
+
+<para>sendLevels </para>
+
+<para>setPupilResult </para>
+
+<para>checkPupilLogin </para>
+
+<para>sendPupilPage </para>
+
+<para>sendPupilRate </para>
+
+<para>addPupilQuestion </para>
+
+<para>sendPupilsQuestions</para>
+</formalpara>
+Example usage: Typically, this method is connected to the <computeroutput>readyRead</computeroutput> signal of a QTcpSocket instance to handle incoming data from clients in a server application.</para>
+</section>
+<anchor xml:id="_class_server_1a4163ad356e6f6da85e73f9377e54eaf6"/><section>
+    <title>startServer</title>
+<indexterm><primary>startServer</primary><secondary>Server</secondary></indexterm>
+<indexterm><primary>Server</primary><secondary>startServer</secondary></indexterm>
+<para><computeroutput>void Server::startServer (int host, QString hostName, QString databaseName, QString username, QString password)<computeroutput>[slot]</computeroutput></computeroutput></para>
+<para>Starts the server and connects to the specified PostgreSQL database.</para>
+
+<para>This method starts the server on any available IP address using the specified host port. If the server starts successfully, it outputs &quot;Listening...&quot;. Otherwise, it outputs &quot;Not listening...&quot;. Then, the method connects to a PostgreSQL database with the provided connection parameters:<itemizedlist>
+<listitem>
+<para>Host name</para>
+</listitem><listitem>
+<para>Database name</para>
+</listitem><listitem>
+<para>Username</para>
+</listitem><listitem>
+<para>Password If the database connection fails, an error message is outputted.</para>
+</listitem></itemizedlist>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>host</entry><entry>
+<para>The port number on which the server will listen. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>hostName</entry><entry>
+<para>The host name or IP address of the PostgreSQL server. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>databaseName</entry><entry>
+<para>The name of the PostgreSQL database to connect to. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>username</entry><entry>
+<para>The username used to authenticate with the PostgreSQL server. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>password</entry><entry>
+<para>The password used to authenticate with the PostgreSQL server.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                Example usage: <literallayout><computeroutput><link linkend="_class_server">Server</link>&#32;server;
+server.<link linkend="_class_server_1a4163ad356e6f6da85e73f9377e54eaf6">startServer</link>(5555,&#32;<emphasis role="stringliteral">&quot;127.0.0.1&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;ITQuest&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;postgres&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;78789898&quot;</emphasis>);
+</computeroutput></literallayout></para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_class_server_1ae6e8e280151dd8ca9a269a61c51ad099"/><section>
+    <title>Data</title>
+<indexterm><primary>Data</primary><secondary>Server</secondary></indexterm>
+<indexterm><primary>Server</primary><secondary>Data</secondary></indexterm>
+<para><computeroutput>QByteArray Server::Data</computeroutput></para></section>
+<anchor xml:id="_class_server_1ac7f958096890d0442b711a38000a02f7"/><section>
+    <title>socket</title>
+<indexterm><primary>socket</primary><secondary>Server</secondary></indexterm>
+<indexterm><primary>Server</primary><secondary>socket</secondary></indexterm>
+<para><computeroutput>QTcpSocket* Server::socket</computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_server_8h">server.h</link><link linkend="_server_8cpp">server.cpp</link></section>
+</section>

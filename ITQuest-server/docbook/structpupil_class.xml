@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structpupil_class" xml:lang="en-US">
+<title>pupilClass Struct Reference</title>
+<indexterm><primary>pupilClass</primary></indexterm>
+<para>
+<computeroutput>#include &lt;server.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>QString <link linkend="_structpupil_class_1a38422674cb3b7eb1693889cd1e61aff0">name</link></para>
+</listitem>
+            <listitem><para>int <link linkend="_structpupil_class_1ac36e6d2a200aaa4984842f68ceaf4c0b">id</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structpupil_class_1ac36e6d2a200aaa4984842f68ceaf4c0b"/><section>
+    <title>id</title>
+<indexterm><primary>id</primary><secondary>pupilClass</secondary></indexterm>
+<indexterm><primary>pupilClass</primary><secondary>id</secondary></indexterm>
+<para><computeroutput>int pupilClass::id</computeroutput></para></section>
+<anchor xml:id="_structpupil_class_1a38422674cb3b7eb1693889cd1e61aff0"/><section>
+    <title>name</title>
+<indexterm><primary>name</primary><secondary>pupilClass</secondary></indexterm>
+<indexterm><primary>pupilClass</primary><secondary>name</secondary></indexterm>
+<para><computeroutput>QString pupilClass::name</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+<link linkend="_server_8h">server.h</link></section>
+</section>

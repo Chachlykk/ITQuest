@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_server_8h_source" xml:lang="en-US">
+<title>server.h</title>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#ifndef&#32;SERVER_H</emphasis>
+2 <emphasis role="preprocessor">#define&#32;SERVER_H</emphasis>
+3 
+4 <emphasis role="preprocessor">#include&#32;&lt;QBuffer&gt;</emphasis>
+5 <emphasis role="preprocessor">#include&#32;&lt;QDebug&gt;</emphasis>
+6 <emphasis role="preprocessor">#include&#32;&lt;QImage&gt;</emphasis>
+7 <emphasis role="preprocessor">#include&#32;&lt;QJsonDocument&gt;</emphasis>
+8 <emphasis role="preprocessor">#include&#32;&lt;QJsonObject&gt;</emphasis>
+9 <emphasis role="preprocessor">#include&#32;&lt;QTcpServer&gt;</emphasis>
+10 <emphasis role="preprocessor">#include&#32;&lt;QTcpSocket&gt;</emphasis>
+11 <emphasis role="preprocessor">#include&#32;&lt;QtSql&gt;</emphasis>
+12 <emphasis role="preprocessor">#include&#32;&lt;algorithm&gt;</emphasis>
+13 <emphasis role="preprocessor">#include&#32;&lt;vector&gt;</emphasis>
+14 
+15 <emphasis role="keyword">enum</emphasis>&#32;<link linkend="_server_8h_1ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</link>&#32;{&#32;<link linkend="_server_8h_1ad8ed01ff3ff33333d8e19db4d2818bb6a26254b96329faff9b9a49e8a7a9f6ee9">JSONData</link>,&#32;<link linkend="_server_8h_1ad8ed01ff3ff33333d8e19db4d2818bb6ac736067afeb9eb8ff8ec1f5909b61060">PupilsData</link>,&#32;<link linkend="_server_8h_1ad8ed01ff3ff33333d8e19db4d2818bb6a0dea947f2a89b43b4868c5e80db318f4">PupilsRate</link>,&#32;<link linkend="_server_8h_1ad8ed01ff3ff33333d8e19db4d2818bb6a18664a4a9ce5f56ac3296cb5b1b7563c">QuestionsData</link>&#32;};
+16 <emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_server_8h_1a4de53398f8d7dee76f19d552a8141446">answersPos</link>[]&#32;=&#32;{180,&#32;900,&#32;1610};
+17 
+18 <emphasis role="keyword">struct&#32;</emphasis><link linkend="_structpupil_class">pupilClass</link>
+19 {
+20 &#32;&#32;&#32;&#32;QString&#32;<link linkend="_structpupil_class_1a38422674cb3b7eb1693889cd1e61aff0">name</link>;
+21 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_structpupil_class_1ac36e6d2a200aaa4984842f68ceaf4c0b">id</link>;
+22 };
+23 
+24 <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_server">Server</link>:&#32;<emphasis role="keyword">public</emphasis>&#32;QTcpServer
+25 {
+26 &#32;&#32;&#32;&#32;Q_OBJECT
+27 <emphasis role="keyword">public</emphasis>:
+28 &#32;&#32;&#32;&#32;<link linkend="_class_server_1ad5ec9462b520e59f7ea831e157ee5e59">Server</link>(){}
+29 &#32;&#32;&#32;&#32;<link linkend="_class_server_1a4b3aa2579cb1c8cd1d069582c14d0fa6">~Server</link>();
+30 
+31 &#32;&#32;&#32;&#32;QTcpSocket*&#32;<link linkend="_class_server_1ac7f958096890d0442b711a38000a02f7">socket</link>;
+32 &#32;&#32;&#32;&#32;QByteArray&#32;<link linkend="_class_server_1ae6e8e280151dd8ca9a269a61c51ad099">Data</link>;
+33 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_server_1a163ea8d7c12713d94dcdf7ac68813992">sendToClient</link>(QString&#32;message);
+34 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_server_1a0b5ead6c6d6143d16ec9095fce9e4810">sendToClientOther</link>(QByteArray&#32;data,&#32;<link linkend="_server_8h_1ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</link>&#32;dataType);
+35 
+36 <emphasis role="keyword">public</emphasis>&#32;slots:
+37 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_server_1a4163ad356e6f6da85e73f9377e54eaf6">startServer</link>(
+38 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;host,&#32;QString&#32;hostName,&#32;QString&#32;databaseName,&#32;QString&#32;username,&#32;QString&#32;password);
+39 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_server_1aa229a1587514197693274aa0d589344b">incomingConnection</link>(qintptr&#32;&#32;socketDescriptor)&#32;<emphasis role="keyword">override</emphasis>;
+40 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_server_1a02ab10c0f82b86e87072c5c8e8ab1d21">sockReady</link>();
+41 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_server_1afe10dec3bb8eecd27cbbf05fb3959e3d">sockDisc</link>();
+42 <emphasis role="keyword">private</emphasis>:
+43 &#32;&#32;&#32;&#32;QSqlDatabase&#32;db;
+44 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;createTeacherId(QJsonObject&#32;&amp;jsonObject);
+45 &#32;&#32;&#32;&#32;QString&#32;getTeacherPassword(<emphasis role="keywordtype">int</emphasis>&#32;<emphasis role="keywordtype">id</emphasis>);
+46 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;ifClassExist(QJsonObject&#32;&amp;jsonObject);
+47 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;createPupilId(QJsonObject&#32;&amp;jsonObject);
+48 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;sendQuestionToClient(QJsonObject&#32;&amp;jsonObject);
+49 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;createClassId(QJsonObject&#32;&amp;jsonObject);
+50 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;deleteClass(QJsonObject&#32;&amp;jsonObject);
+51 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;addLevel(QJsonObject&#32;&amp;jsonObject);
+52 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;sendClasses(<emphasis role="keywordtype">int</emphasis>&#32;<emphasis role="keywordtype">id</emphasis>);
+53 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;sendPupils(<emphasis role="keywordtype">int</emphasis>&#32;classId);
+54 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;sendLevels(<emphasis role="keywordtype">int</emphasis>&#32;classId);
+55 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;setPupilResult(QJsonObject&#32;&amp;jsonObject);
+56 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;checkPupilLogin(QJsonObject&#32;&amp;jsonObject);
+57 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;sendPupilPage(QJsonObject&#32;&amp;jsonObject);
+58 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;sendPupilRate(QJsonObject&#32;&amp;jsonObject);
+59 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;addPupilQuestion(QJsonObject&#32;&amp;jsonObject);
+60 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;sendPupilsQuestions(QJsonObject&#32;&amp;jsonObject);
+61 &#32;&#32;&#32;&#32;QStringList&#32;getListFromDB(QString&#32;str);
+62 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;findFirstZeroIndex(<emphasis role="keyword">const</emphasis>&#32;QStringList&#32;&amp;levelsResult);
+63 };
+64 
+65 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//&#32;SERVER_H</emphasis>
+</programlisting></section>

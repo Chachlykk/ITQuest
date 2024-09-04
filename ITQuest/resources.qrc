@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>map/map_level1.jpg</file>
+        <file>map/texture_stone.jpg</file>
+        <file>map/character.png</file>
+        <file>shaders/map.frag</file>
+        <file>shaders/map.vert</file>
+    </qresource>
+</RCC>
